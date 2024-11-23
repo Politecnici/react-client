@@ -1,11 +1,11 @@
-import { StartButton } from "./components/start-interaction"
+import { Dashboard } from "./components/dashboard";
 
 function App() {
-  return (
-    <div>
-      <StartButton />
-    </div>
-  )
+	return (
+		<>
+			<Dashboard />
+		</>
+	);
 }
 
-export default App
+export default App;

@@ -4,7 +4,7 @@ export const createScenario = async (
 	numberOfVehicles: number,
 	numberOfCustomers: number,
 ): Promise<ScenarioResponse> => {
-	const url = `http://localhost:8080/scenario/create?numberOfVehicles=${numberOfVehicles}&numberOfCustomers=${numberOfCustomers}`;
+	const url = "http://localhost:9000/scenario/create";
 
 	const response = await fetch(url, {
 		method: "POST",
@@ -12,8 +12,12 @@ export const createScenario = async (
 			Accept: "application/json",
 			"Allow-Control-Allow-Origin": "*",
 		},
-		body: ""
+		body: JSON.stringify({
+			"vehicles": numberOfVehicles,
+			"customers": numberOfCustomers
+		})
 	});
+
 
 	if (!response.ok) {
 		throw new Error("Failed to create scenario");
