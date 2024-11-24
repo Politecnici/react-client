@@ -1,4 +1,3 @@
-// Types representing the response structure
 export interface Vehicle {
     id: string;
     coordX: number;

@@ -1,27 +1,23 @@
-import type { ScenarioResponse } from "../types";
+import type { ScenarioResponse } from "../../../types";
 
 export const createScenario = async (
 	numberOfVehicles: number,
 	numberOfCustomers: number,
+	simulationSpeed: number
 ): Promise<ScenarioResponse> => {
-	const url = "http://localhost:9000/scenario/create";
+	const url = "http://localhost:8000/scenario/start";
 
 	const response = await fetch(url, {
 		method: "POST",
 		headers: {
-			Accept: "application/json",
-			"Allow-Control-Allow-Origin": "*",
+			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
 			"vehicles": numberOfVehicles,
-			"customers": numberOfCustomers
+			"customers": numberOfCustomers,
+			"speed": simulationSpeed
 		})
 	});
-
-
-	if (!response.ok) {
-		throw new Error("Failed to create scenario");
-	}
 
 	const data: ScenarioResponse = await response.json();
 	return data;

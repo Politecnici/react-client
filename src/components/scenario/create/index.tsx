@@ -19,11 +19,25 @@ import {
 } from "@/components/ui/tooltip";
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
+import { createScenario } from "./create-scenario";
 
 export const ScenarioCreate = () => {
 	const [numberOfVehicles, setNumberOfVehicles] = useState(5);
 	const [numberOfCustomers, setNumberOfCustomers] = useState(10);
 	const [simulationSpeed, setSimulationSpeed] = useState(0.2);
+
+	const handleClick = async () => {
+		try {
+			const response = await createScenario(
+				numberOfVehicles,
+				numberOfCustomers,
+				simulationSpeed,
+			);
+			console.log("Scenario created:", response);
+		} catch (error) {
+			console.log("An error occurred while creating the scenario.");
+		}
+	};
 
 	return (
 		<div className="flex items-center space-x-2">
@@ -31,10 +45,8 @@ export const ScenarioCreate = () => {
 				<DrawerTrigger>
 					<TooltipProvider delayDuration={0}>
 						<Tooltip>
-							<TooltipTrigger asChild>
-								<Button>
-									<PlusIcon />
-								</Button>
+							<TooltipTrigger>
+								<PlusIcon />
 							</TooltipTrigger>
 							<TooltipContent>Create a new Scenario</TooltipContent>
 						</Tooltip>
@@ -72,7 +84,13 @@ export const ScenarioCreate = () => {
 					</DrawerHeader>
 					<DrawerFooter>
 						<Button variant="outline">Randomize</Button>
-						<Button>Create</Button>
+						<Button
+							onClick={() => {
+								handleClick();
+							}}
+						>
+							Create
+						</Button>
 						<DrawerClose>
 							<Button variant="outline" className="w-full">
 								Cancel
