@@ -28,3 +28,10 @@ export interface ScenarioResponse {
     vehicles: Vehicle[];
     customers: Customer[];
 }
+
+export type EventType = 'pickup' | 'dropoff' | 'finish';
+
+export interface EventResponse {
+    vehicle: Vehicle;
+    event_type: EventType;
+}

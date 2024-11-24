@@ -28,14 +28,13 @@ export const ScenarioCreate = () => {
 
 	const handleClick = async () => {
 		try {
-			const response = await createScenario(
+			await createScenario(
 				numberOfVehicles,
 				numberOfCustomers,
 				simulationSpeed,
 			);
-			console.log("Scenario created:", response);
 		} catch (error) {
-			console.log("An error occurred while creating the scenario.");
+			console.error("An error occurred while creating the scenario.");
 		}
 	};
 

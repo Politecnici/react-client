@@ -32,7 +32,3 @@ services:
     restart: no
     depends_on:
       - backend
-  fastapi:
-    image: fastapi-server-fastapi
-    ports:
-      - "8000:8000"
